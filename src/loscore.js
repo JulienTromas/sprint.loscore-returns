@@ -9,7 +9,7 @@ class LoScore {
   |~~~~~~~~~~
   * */
   uniq(array) {
-    let newArray = [];
+    const newArray = [];
     for (let i = 0; i < array.length; i++) {
       if (!newArray.includes(array[i])) {
         newArray.push(array[i]);
@@ -36,7 +36,7 @@ class LoScore {
   }
 
   map(collection, iteratee) {
-    let output = [];
+    const output = [];
 
     this.each(collection, (value) => {
       output.push(iteratee(value));
@@ -52,7 +52,7 @@ class LoScore {
   }
 
   reject(collection, test) {
-    let output = [];
+    const output = [];
 
     this.filter(collection, (value) => {
       if (!test(value)) {
@@ -63,7 +63,7 @@ class LoScore {
   }
 
   reduce(collection, iterator, accumulator) {
-    let array = collection.slice();
+    const array = collection.slice();
 
     if (accumulator === undefined) {
       accumulator = array[0];
@@ -105,9 +105,9 @@ class LoScore {
   |~~~~~~~~~~
   * */
   extend(main) {
-    let output = main;
+    const output = main;
 
-    let objects = [...arguments].slice(1);
+    const objects = [...arguments].slice(1);
 
     let obj;
 
@@ -137,30 +137,29 @@ class LoScore {
         functionResult = func(value);
         alreadyCalled = true;
         return functionResult;
-      } else {
-        return functionResult;
       }
+      return functionResult;
     };
   }
 
   memoize(func) {
-    let cache = {};
+    const cache = {};
 
     return (value) => {
       if (cache[value]) {
         return cache[value];
-      } else {
-        let funcResult = func(value);
-        cache[value] = JSON.stringify(value);
-        return funcResult;
       }
+
+      let funcResult = func(value);
+      cache[value] = JSON.stringify(value);
+      return funcResult;
     };
   }
 
   invoke(collection, functionOrKey) {
-    let output = [];
+    const output = [];
 
-    for (let key of collection) {
+    for (const key of collection) {
       if (functionOrKey instanceof Function) {
         output.push(functionOrKey.apply(key));
       } else {
