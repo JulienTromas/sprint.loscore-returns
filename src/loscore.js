@@ -158,7 +158,16 @@ class LoScore {
   }
 
   invoke(collection, functionOrKey) {
-    // YOUR CODE HERE
+    let output = [];
+
+    for (let key of collection) {
+      if (functionOrKey instanceof Function) {
+        output.push(functionOrKey.apply(key));
+      } else {
+        output.push(key[functionOrKey].apply(key));
+      }
+    }
+    return output;
   }
 
   /**
