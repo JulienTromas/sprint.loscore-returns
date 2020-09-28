@@ -128,7 +128,19 @@ class LoScore {
   * */
 
   once(func) {
-    // YOUR CODE HERE
+    let alreadyCalled = false;
+
+    let functionResult;
+
+    return (value) => {
+      if (!alreadyCalled) {
+        functionResult = func(value);
+        alreadyCalled = true;
+        return functionResult;
+      } else {
+        return functionResult;
+      }
+    };
   }
 
   memoize(func) {
